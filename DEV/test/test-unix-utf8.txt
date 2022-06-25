@@ -1,0 +1,52 @@
+LineProcessorLib TEST
+=====================
+
+Spanish:
+	Benjamín pidió una bebida de kiwi y fresa. Noé, sin vergüenza, la más exquisita champaña del menú.
+	^^^^^^^^ ^^^^^ ^^^ ^^^^^^ ^^ ^^^^ ^ ^^^^^. ^^^, ^^^ ^^^^^^^^^, ^^ ^^^ ^^^^^^^^^ ^^^^^^^^ ^^^ ^^^^.
+
+German:
+	Victor jagt zwölf Boxkämpfer quer über den großen Sylter Deich.
+	^^^^^^ ^^^^ ^^^^^ ^^^^^^^^^^ ^^^^ ^^^^ ^^^ ^^^^^^ ^^^^^^ ^^^^^.
+
+Finnish:
+	Wieniläinen siouxia puhuva ökyzombi diggaa Åsan roquefort-tacoja.
+	^^^^^^^^^^^ ^^^^^^^ ^^^^^^ ^^^^^^^^ ^^^^^^ ^^^^ ^^^^^^^^^-^^^^^^.
+
+Czech:
+	Nechť již hříšné saxofony ďáblů rozezvučí síň úděsnými tóny waltzu, tanga a quickstepu.
+	^^^^^ ^^^ ^^^^^^ ^^^^^^^^ ^^^^^ ^^^^^^^^^ ^^^ ^^^^^^^^ ^^^^ ^^^^^^, ^^^^^ ^ ^^^^^^^^^^.
+
+Braille:
+	⠞⠓⠑ ⠟⠥⠊⠉⠅ ⠃⠗⠕⠺⠝ ⠋⠕⠭ ⠚⠥⠍⠏⠎ ⠕⠧⠑⠗ ⠞⠓⠑
+	^^^ ^^^^^ ^^^^^ ^^^ ^^^^^ ^^^^ ^^^
+
+Emojis:
+	3:😀😁😂 4:😃😄😅😆 2:😇😈 3:😉😊😋 1:😌 3:😍😎😏
+
+Box drawing & block elements:
+	░░▒▒▓▓██ - ▁▂▃▄▅▆▇█ - ╱╲╱╲╳╳╳ - ╔══╦══╗ - ╚══╩══╝
+	^^^^^^^^ - ^^^^^^^^ - ^^^^^^^ - ^^^^^^^ - ^^^^^^^
+
+Tabulation:
+		x	]
+		xx	]
+		xxx	]
+		xxxx	]
+		xxxxx	]
+		xxxxxx	]
+		xxxxxxx	]
+		xxxxxxxx	]
+
+New lines:
+1
+2
+
+3
+
+
+4
+
+
+
+]
