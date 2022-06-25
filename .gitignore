@@ -1,52 +1,43 @@
-# Prerequisites
-*.d
 
-# Object files
+#-- MACOS HIDDEN FILES -------
+.DS_Store
+
+#-- OBJECT FILES -------------
+obj/
 *.o
 *.ko
 *.obj
 *.elf
 
-# Linker output
+#-- LINKER OUTPUT ------------
 *.ilk
 *.map
 *.exp
 
-# Precompiled Headers
+#-- PRECOMPILED HEADERS ------
 *.gch
 *.pch
 
-# Libraries
+#-- LIBRARIES ----------------
 *.lib
 *.a
 *.la
 *.lo
 
-# Shared objects (inc. Windows DLLs)
+#-- SHARED OBJECTS -----------
 *.dll
 *.so
 *.so.*
 *.dylib
 
-# Executables
+#-- EXECUTABLES --------------
+bin/
 *.exe
 *.out
-*.app
-*.i*86
-*.x86_64
-*.hex
 
-# Debug files
+#-- DEBUG FILES --------------
 *.dSYM/
 *.su
 *.idb
 *.pdb
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
