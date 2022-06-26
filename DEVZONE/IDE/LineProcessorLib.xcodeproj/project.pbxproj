@@ -62,8 +62,8 @@
 		5BFC19482867CFAE0045967A = {
 			isa = PBXGroup;
 			children = (
-				5BFC197A2867E3660045967A /* The ASCII version */,
-				5BFC19792867E3480045967A /* The UTF8 version */,
+				5BFC197A2867E3660045967A /* Type - ASCII version */,
+				5BFC19792867E3480045967A /* Type - UTF8 version */,
 				5BFC19522867CFAE0045967A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,22 +77,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5BFC19792867E3480045967A /* The UTF8 version */ = {
+		5BFC19792867E3480045967A /* Type - UTF8 version */ = {
 			isa = PBXGroup;
 			children = (
 				5BFC19712867D0AF0045967A /* linepro.h */,
 				5BFC19742867D0E60045967A /* type.c */,
 			);
-			name = "The UTF8 version";
+			name = "Type - UTF8 version";
 			sourceTree = "<group>";
 		};
-		5BFC197A2867E3660045967A /* The ASCII version */ = {
+		5BFC197A2867E3660045967A /* Type - ASCII version */ = {
 			isa = PBXGroup;
 			children = (
 				5BFC19722867D0AF0045967A /* lineproa.h */,
 				5BFC19732867D0E60045967A /* typeasc.c */,
 			);
-			name = "The ASCII version";
+			name = "Type - ASCII version";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
