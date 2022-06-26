@@ -1,6 +1,15 @@
 
-#-- MACOS HIDDEN FILES -------
+#-- MACOS TEMP FILES ---------
 .DS_Store
+.Trashes
+*.swp
+
+#-- XCODE FILES --------------
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+timeline.xctimeline
+playground.xcworkspace
 
 #-- OBJECT FILES -------------
 obj/
@@ -40,4 +49,7 @@ bin/
 *.su
 *.idb
 *.pdb
+
+##-- LOCK FILES --------------
+*.lock
 
