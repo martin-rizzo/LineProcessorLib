@@ -36,14 +36,14 @@
 
 
 
-void process_text_line(int linenum, const char* line) {
+void process_line(const char* line, LineproInfo* info) {
     printf("%s\n", line);
 }
 
 
 int main (int argc, char **argv) {
     if (argc>1 && *argv[1]!='\0') {
-        linepro(argv[1], 0, process_text_line);
+        linepro_for_each_line(process_line, argv[1], NULL, NULL);
     }
     return 0;
 }
