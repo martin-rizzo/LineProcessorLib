@@ -10,18 +10,43 @@ OutputDir=".."
 combine_code() {
     local sour_file
     for sour_file in "$@"; do
-      awk '/^([^#]|$)/ { p=1 } p==1' "$InputDir/$sour_file"
+      awk '
+          /^([^#]|$)/ { p=1 }
+          p==1 {
+            if (match($0,/HEADER_CODE\([^\)]*/)) print substr($0,RSTART+12,RLENGTH-12) 
+            else                                 print $0
+          }
+      ' "$InputDir/$sour_file"
     done
 }
 
 print_line_count() {
     local line_count=$(awk 'END{print NR}' "$1")
-    echo "$1 $line_count lines"
+    printf '%-14s %s lines of code\n' "$1" "$line_count"
 }
 
 
+#================================== START ==================================#
+
+#
+# set the working directory to the
+# directory where the script is stored
+#
 cd -- "$ScriptDir" &> /dev/null
 
-header_file="pepe.h"
-combine_code head.h types.h iface.h internal.c iface.c > "$header_file"
-print_line_count "$header_file"
+#
+# make the UTF8 version
+#
+header="$OutputDir/linepro.h"
+rm "$header"
+combine_code head-utf.h includes.h types.h iface.h internal.c iface.c > "$header"
+print_line_count "$header"
+
+#
+# make the ASCII version
+#
+header="$OutputDir/lineproa.h"
+rm "$header"
+combine_code head-asc.h includes.h types.h iface.h internal.c iface.c > "$header"
+print_line_count "$header"
+
