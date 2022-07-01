@@ -3,7 +3,8 @@
 #define LINEPRO_IMPLEMENTATION
 #include "linepro.h"
 */
-#include "head.h"
+#include "head-utf.h"
+#include "includes.h"
 #include "types.h"
 #include "iface.h"
 

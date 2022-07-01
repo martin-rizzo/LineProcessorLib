@@ -1,10 +1,11 @@
-#include "head.h"
+#include "includes.h"
 #include "types.h"
 #include "internal.h"
+#define HEADER_CODE(x)
 
 /*------------------------ INTERNAL IMPLEMENTATION -------------------------*/
 
-LINEPRO_INTERNAL
+HEADER_CODE(static)
 char* _linepro_read_more_data(LineproObject* obj) {
     int bytesToKeep, bytesToLoad, bytesRead;
     char* bufferToFree=NULL;
@@ -28,8 +29,8 @@ char* _linepro_read_more_data(LineproObject* obj) {
     return obj->nextLine;
 }
 
-LINEPRO_INTERNAL
-static LINEPRO_EOL _linepro_select_eol(int count_r, int count_rn, int count_n, int count_nr) {
+HEADER_CODE(static)
+LINEPRO_EOL _linepro_select_eol(int count_r, int count_rn, int count_n, int count_nr) {
     int max=count_r; LINEPRO_EOL eol=LINEPRO_EOL_CLASSICMAC;
     if (count_rn>max) { max=count_rn; eol=LINEPRO_EOL_WINDOWS;  }
     if (count_n >max) { max=count_n ; eol=LINEPRO_EOL_UNIX;     }
@@ -38,7 +39,7 @@ static LINEPRO_EOL _linepro_select_eol(int count_r, int count_rn, int count_n, i
     return eol;
 }
 
-LINEPRO_INTERNAL
+HEADER_CODE(static)
 void _linepro_detect_encoding(LineproObject* obj) {
     static const unsigned char UTF8_BOM[]     = { 239, 187, 191 };
     static const unsigned char UTF16_BE_BOM[] = { 254, 255 };

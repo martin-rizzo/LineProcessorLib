@@ -1,9 +1,8 @@
 /**
- * @file      linepro.h
- * @date      Jun 25, 2022
- * @author    Martin Rizzo | <martinrizzo@gmail.com>
- * @copyright Copyright (c) 2022 Martin Rizzo.
- * @license   http://www.opensource.org/licenses/mit-license.html MIT License
+ * @file    linepro.h
+ * @date    Jun 25, 2022
+ * @author  Martin Rizzo | <martinrizzo@gmail.com>
+ * @license http://www.opensource.org/licenses/mit-license.html [MIT License]
  *//*-------------------------------------------------------------------------
                        LineProcessorLib (UTF8 version)
                 Portable, one-header library to easily process
@@ -30,7 +29,3 @@
      TORT OR OTHERWISE, ARISING FROM,OUT OF OR IN CONNECTION WITH THE
      SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-#include <assert.h>
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
