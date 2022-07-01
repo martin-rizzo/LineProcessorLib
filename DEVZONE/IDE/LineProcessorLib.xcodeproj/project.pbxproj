@@ -62,7 +62,8 @@
 		5B4646B92868E9530008E16A /* iface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iface.h; sourceTree = "<group>"; };
 		5B4646BC2868EC8B0008E16A /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = internal.h; sourceTree = "<group>"; };
 		5B4646BD2868EC8C0008E16A /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		5BF0F4072869F81100A3D984 /* head.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = head.h; sourceTree = "<group>"; };
+		5B8D3FEC286F849600A41B40 /* head-asc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "head-asc.h"; sourceTree = "<group>"; };
+		5BF0F4072869F81100A3D984 /* head-utf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "head-utf.h"; sourceTree = "<group>"; };
 		5BFC195F2867CFDE0045967A /* type */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = type; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BFC196A2867CFEB0045967A /* typeasc */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = typeasc; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BFC19712867D0AF0045967A /* linepro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = linepro.h; path = ../../linepro.h; sourceTree = "<group>"; };
@@ -106,7 +107,8 @@
 		5B46469B2868E4F90008E16A /* sections */ = {
 			isa = PBXGroup;
 			children = (
-				5BF0F4072869F81100A3D984 /* head.h */,
+				5BF0F4072869F81100A3D984 /* head-utf.h */,
+				5B8D3FEC286F849600A41B40 /* head-asc.h */,
 				5B4646B72868E8B00008E16A /* types.h */,
 				5B4646B92868E9530008E16A /* iface.h */,
 				5B4646B82868E9530008E16A /* iface.c */,
