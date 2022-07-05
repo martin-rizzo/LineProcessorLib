@@ -1,11 +1,16 @@
+<h1 align="center">LineProcessorLib</h1>
+<p align="center">Portable, one-header library to easily process lines of text from files encoded in any format.</p>
+<p align="center">
+<img alt="Platform" src="https://img.shields.io/badge/platform-any-33F">
+<img alt="Language" src="https://img.shields.io/badge/language-C-22E">
+<img alt="License"  src="https://img.shields.io/github/license/martin-rizzo/LineProcessorLib?color=11D">
+<img alt="Last"     src="https://img.shields.io/github/last-commit/martin-rizzo/LineProcessorLib">
+</p>
+
+<!--
 LineProcessorLib
 ================
-Portable, one-header library to easily process lines of text from files encoded in any format.
-
-[![Platform](https://img.shields.io/badge/platform-any-33F)](https://en.wikipedia.org/wiki/Cross-platform_software)
-[![Language](https://img.shields.io/badge/language-C-22E)](https://en.wikipedia.org/wiki/C_(programming_language))
-[![License](https://img.shields.io/github/license/martin-rizzo/LineProcessorLib?color=11D)](LICENSE.md)
-[![Last Commit](https://img.shields.io/github/last-commit/martin-rizzo/LineProcessorLib)](https://github.com/martin-rizzo/LineProcessorLib/commits/master)
+-->
 
 
 ### The library is in development ###
