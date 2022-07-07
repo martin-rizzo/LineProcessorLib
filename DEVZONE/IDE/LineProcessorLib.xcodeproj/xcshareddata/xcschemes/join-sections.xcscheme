@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5B4646AD2868E7850008E16A"
-               BuildableName = "sections-utf8"
-               BlueprintName = "sections-utf8"
+               BlueprintIdentifier = "5B420AB42875E39100306BBB"
+               BuildableName = "join-sections"
+               BlueprintName = "join-sections"
                ReferencedContainer = "container:LineProcessorLib.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -36,28 +36,43 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "$(PROJECT_DIR)/../test"
+      customWorkingDirectory = "$(PROJECT_DIR)/../"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "NO"
       debugXPCServices = "NO"
       debugServiceExtension = "internal"
-      enableGPUValidationMode = "1"
       allowLocationSimulation = "NO"
       GPUProfilerEnabled = "No">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5B4646AD2868E7850008E16A"
-            BuildableName = "sections-utf8"
-            BlueprintName = "sections-utf8"
+            BlueprintIdentifier = "5B420AB42875E39100306BBB"
+            BuildableName = "join-sections"
+            BlueprintName = "join-sections"
             ReferencedContainer = "container:LineProcessorLib.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "test-unix-utf8.txt"
+            argument = "sections/types.h sections/iface.c sections/internal.c "
             isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-o output.h"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--version"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--help"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--hahaha"
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
@@ -71,9 +86,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5B4646AD2868E7850008E16A"
-            BuildableName = "sections-utf8"
-            BlueprintName = "sections-utf8"
+            BlueprintIdentifier = "5B420AB42875E39100306BBB"
+            BuildableName = "join-sections"
+            BlueprintName = "join-sections"
             ReferencedContainer = "container:LineProcessorLib.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

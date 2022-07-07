@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B420ABD2875E3D800306BBB /* join-sections.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B420ABC2875E3D800306BBB /* join-sections.c */; };
 		5B4646B52868E7BA0008E16A /* internal.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B46469C2868E4F90008E16A /* internal.c */; };
 		5B4646BA2868E9530008E16A /* iface.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B4646B82868E9530008E16A /* iface.c */; };
 		5B4646BE2868EC8C0008E16A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B4646BD2868EC8C0008E16A /* main.c */; };
@@ -15,6 +16,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		5B420AB32875E39100306BBB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		5B4646A02868E5820008E16A /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -54,6 +64,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5B420AB52875E39100306BBB /* join-sections */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "join-sections"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B420ABC2875E3D800306BBB /* join-sections.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "join-sections.c"; path = "../join-sections.c"; sourceTree = "<group>"; };
+		5B420ABE2875E58F00306BBB /* joincode.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = joincode.sh; path = ../joincode.sh; sourceTree = "<group>"; };
 		5B46469C2868E4F90008E16A /* internal.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = internal.c; sourceTree = "<group>"; };
 		5B4646A22868E5820008E16A /* sections-ascii */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "sections-ascii"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B4646AE2868E7850008E16A /* sections-utf8 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "sections-utf8"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +87,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5B420AB22875E39100306BBB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5B46469F2868E5820008E16A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -134,8 +154,10 @@
 		5BFC19482867CFAE0045967A = {
 			isa = PBXGroup;
 			children = (
-				5B46469B2868E4F90008E16A /* sections */,
 				5B4646B62868E8230008E16A /* examples */,
+				5B46469B2868E4F90008E16A /* sections */,
+				5B420ABC2875E3D800306BBB /* join-sections.c */,
+				5B420ABE2875E58F00306BBB /* joincode.sh */,
 				5BFC19522867CFAE0045967A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -147,6 +169,7 @@
 				5BFC196A2867CFEB0045967A /* typeasc */,
 				5B4646A22868E5820008E16A /* sections-ascii */,
 				5B4646AE2868E7850008E16A /* sections-utf8 */,
+				5B420AB52875E39100306BBB /* join-sections */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -172,6 +195,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5B420AB42875E39100306BBB /* join-sections */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B420ABB2875E39100306BBB /* Build configuration list for PBXNativeTarget "join-sections" */;
+			buildPhases = (
+				5B420AB12875E39100306BBB /* Sources */,
+				5B420AB22875E39100306BBB /* Frameworks */,
+				5B420AB32875E39100306BBB /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "join-sections";
+			productName = "join-sections";
+			productReference = 5B420AB52875E39100306BBB /* join-sections */;
+			productType = "com.apple.product-type.tool";
+		};
 		5B4646A12868E5820008E16A /* sections-ascii */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B4646A62868E5820008E16A /* Build configuration list for PBXNativeTarget "sections-ascii" */;
@@ -249,6 +289,9 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
+					5B420AB42875E39100306BBB = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
 					5B4646A12868E5820008E16A = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
@@ -280,11 +323,20 @@
 				5B4646A12868E5820008E16A /* sections-ascii */,
 				5BFC195E2867CFDE0045967A /* type */,
 				5BFC19692867CFEB0045967A /* typeasc */,
+				5B420AB42875E39100306BBB /* join-sections */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5B420AB12875E39100306BBB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B420ABD2875E3D800306BBB /* join-sections.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5B46469E2868E5820008E16A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -321,6 +373,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		5B420AB92875E39100306BBB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5B420ABA2875E39100306BBB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		5B4646A72868E5820008E16A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -389,7 +457,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_C_LANGUAGE_STANDARD = ansi;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -447,7 +515,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_C_LANGUAGE_STANDARD = ansi;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -497,6 +565,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5B420ABB2875E39100306BBB /* Build configuration list for PBXNativeTarget "join-sections" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B420AB92875E39100306BBB /* Debug */,
+				5B420ABA2875E39100306BBB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5B4646A62868E5820008E16A /* Build configuration list for PBXNativeTarget "sections-ascii" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
