@@ -81,6 +81,17 @@ const char* error_msg[] = {
     "Can not open file '%s' for writing"
 };
 
+/*---------------------------- ??????????????? ----------------------------*/
+
+#define is_newline(x) ((x)=='\n' || (x)=='\r')
+#define is_blank(x)   ((x)==' '  || (x)=='\t')
+
+char* get_next_line(char* ptr, const char* end) {
+    while (ptr<end && !is_newline(*ptr)) { ++ptr; }
+    if (ptr<end) { ptr += (is_newline(ptr[1]) && ptr[1]!=ptr[0]) ? 2 : 1; }
+    return ptr;
+}
+
 /*---------------------------- SECTION HANDLING ----------------------------*/
 
 typedef struct Section {
@@ -102,11 +113,12 @@ Section* alloc_section(const char* filename) {
     fseek(file, 0, SEEK_SET);
     
     /* load the full file into memory */
-    section = malloc(sizeof(Section)+length);
+    section = malloc(sizeof(Section)+length+1);
     if (!section) { fclose(file); return NULL; }
     length  = fread(section->buffer, 1, length, file);
-    section->begin = &section->buffer[0];
-    section->end   = &section->buffer[length];
+    section->begin  = &section->buffer[0];
+    section->end    = &section->buffer[length];
+    (*section->end) = '\0';
     fclose(file);
     return section;
 }
@@ -117,6 +129,20 @@ void append_section(FILE* out_file, const Section* section, const char* section_
     length = (section->end - section->begin);
     if (out_file!=stdout) { printf(" # appending '%s'\n", section_name); }
     fwrite(section->begin, 1, length, out_file);
+}
+
+void trim_section(Section* section) {
+    char* ptr; const char* end; int preprocesor;
+    assert( section!=NULL && section->begin!=NULL && section->end!=NULL );
+    
+    ptr = section->begin;
+    end = section->end;
+    preprocesor=TRUE; while (ptr<end && preprocesor) {
+        /* skip spaces/tabs and verify preprocesor directive */
+        while (ptr<end && is_blank(*ptr)) { ++ptr; }
+        preprocesor = (*ptr=='#');
+        if (preprocesor) { section->begin = ptr = get_next_line(ptr,end); }
+    }
 }
 
 /*-------------------------------- COMMANDS --------------------------------*/
@@ -145,17 +171,22 @@ Error join_sections(const char*  out_filename,
                     const char** filenames,
                     int          filenames_cnt)
 {
-    FILE* out_file; Section* section; int i;
+    FILE* out_file; Section* section; const char* section_name;
     Error error=NO_ERROR; const char* errparam=0;
+    int i;
 
     out_file = out_filename ? fopen(out_filename, "wb") : stdout;
     if (!out_file) { error=ERR_CANT_OPEN_OUTPUT_FILE; errparam=out_filename; }
     
     for (i=0; i<filenames_cnt && !error; ++i) {
-        section = alloc_section( filenames[i] );
-        if (section) { append_section(out_file, section,filenames[i]); }
-        else         { error=ERR_CANT_OPEN_INPUT_FILE; errparam=filenames[i]; }
-        free(section);
+        section_name = filenames[i];
+        section      = alloc_section( section_name );
+        if (section) {
+            trim_section(section);
+            append_section(out_file, section, section_name);
+            free(section);
+        }
+        else { error=ERR_CANT_OPEN_INPUT_FILE; errparam=filenames[i]; }
         
     }
     if (out_file!=NULL && out_file!=stdout) { fclose(out_file); }
