@@ -68,7 +68,6 @@
 		5B219FB72877AB4D0055F32C /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = makefile; path = ../makefile; sourceTree = "<group>"; };
 		5B420AB52875E39100306BBB /* join-sections */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "join-sections"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B420ABC2875E3D800306BBB /* join-sections.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "join-sections.c"; path = "../join-sections.c"; sourceTree = "<group>"; };
-		5B420ABE2875E58F00306BBB /* joincode.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = joincode.sh; path = ../joincode.sh; sourceTree = "<group>"; };
 		5B46469C2868E4F90008E16A /* internal.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = internal.c; sourceTree = "<group>"; };
 		5B4646A22868E5820008E16A /* sections-ascii */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "sections-ascii"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B4646AE2868E7850008E16A /* sections-utf8 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "sections-utf8"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,7 +159,6 @@
 				5B46469B2868E4F90008E16A /* sections */,
 				5B420ABC2875E3D800306BBB /* join-sections.c */,
 				5B219FB72877AB4D0055F32C /* makefile */,
-				5B420ABE2875E58F00306BBB /* joincode.sh */,
 				5BFC19522867CFAE0045967A /* Products */,
 			);
 			sourceTree = "<group>";
