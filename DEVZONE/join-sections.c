@@ -96,12 +96,12 @@ Section* alloc_section(const char* filename) {
     file = fopen(filename, "rb");
     if (!file) { return NULL; }
     
-    // calculate file length
+    /* calculate file length */
     fseek(file, 0, SEEK_END);
     length = ftell(file);
     fseek(file, 0, SEEK_SET);
     
-    // load the full file into memory
+    /* load the full file into memory */
     section = malloc(sizeof(Section)+length);
     if (!section) { fclose(file); return NULL; }
     length  = fread(section->buffer, 1, length, file);
@@ -111,11 +111,12 @@ Section* alloc_section(const char* filename) {
     return section;
 }
 
-void append_section(FILE* file, const Section* section) {
+void append_section(FILE* out_file, const Section* section, const char* section_name) {
     long length;
-    assert( file!=NULL && section!=NULL );
+    assert( out_file!=NULL && section!=NULL && section_name!=NULL );
     length = (section->end - section->begin);
-    fwrite(section->begin, 1, length, file);
+    if (out_file!=stdout) { printf(" # appending '%s'\n", section_name); }
+    fwrite(section->begin, 1, length, out_file);
 }
 
 /*-------------------------------- COMMANDS --------------------------------*/
@@ -152,7 +153,7 @@ Error join_sections(const char*  out_filename,
     
     for (i=0; i<filenames_cnt && !error; ++i) {
         section = alloc_section( filenames[i] );
-        if (section) { append_section(out_file, section); }
+        if (section) { append_section(out_file, section,filenames[i]); }
         else         { error=ERR_CANT_OPEN_INPUT_FILE; errparam=filenames[i]; }
         free(section);
         
