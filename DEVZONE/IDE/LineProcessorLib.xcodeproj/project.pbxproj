@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B219FB82877AB4D0055F32C /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = 5B219FB72877AB4D0055F32C /* makefile */; };
 		5B420ABD2875E3D800306BBB /* join-sections.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B420ABC2875E3D800306BBB /* join-sections.c */; };
 		5B4646B52868E7BA0008E16A /* internal.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B46469C2868E4F90008E16A /* internal.c */; };
 		5B4646BA2868E9530008E16A /* iface.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B4646B82868E9530008E16A /* iface.c */; };
@@ -64,6 +65,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5B219FB72877AB4D0055F32C /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = makefile; path = ../makefile; sourceTree = "<group>"; };
 		5B420AB52875E39100306BBB /* join-sections */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "join-sections"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B420ABC2875E3D800306BBB /* join-sections.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "join-sections.c"; path = "../join-sections.c"; sourceTree = "<group>"; };
 		5B420ABE2875E58F00306BBB /* joincode.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = joincode.sh; path = ../joincode.sh; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				5B4646B62868E8230008E16A /* examples */,
 				5B46469B2868E4F90008E16A /* sections */,
 				5B420ABC2875E3D800306BBB /* join-sections.c */,
+				5B219FB72877AB4D0055F32C /* makefile */,
 				5B420ABE2875E58F00306BBB /* joincode.sh */,
 				5BFC19522867CFAE0045967A /* Products */,
 			);
@@ -350,6 +353,7 @@
 			files = (
 				5B4646BA2868E9530008E16A /* iface.c in Sources */,
 				5B4646B52868E7BA0008E16A /* internal.c in Sources */,
+				5B219FB82877AB4D0055F32C /* makefile in Sources */,
 				5B4646BE2868EC8C0008E16A /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -457,8 +461,12 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				GCC_CW_ASM_SYNTAX = NO;
 				GCC_C_LANGUAGE_STANDARD = ansi;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_ASM_KEYWORD = NO;
+				GCC_ENABLE_PASCAL_STRINGS = NO;
+				GCC_INPUT_FILETYPE = sourcecode.c.c;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -467,6 +475,7 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -515,10 +524,15 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_CW_ASM_SYNTAX = NO;
 				GCC_C_LANGUAGE_STANDARD = ansi;
+				GCC_ENABLE_ASM_KEYWORD = NO;
+				GCC_ENABLE_PASCAL_STRINGS = NO;
+				GCC_INPUT_FILETYPE = sourcecode.c.c;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
