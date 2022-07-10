@@ -112,13 +112,17 @@ Section* alloc_section(const char* filename) {
     length = ftell(file);
     fseek(file, 0, SEEK_SET);
     
-    /* load the full file into memory */
+    /* load the entire file into memory and adjust length */
     section = malloc(sizeof(Section)+length+1);
     if (!section) { fclose(file); return NULL; }
-    length  = fread(section->buffer, 1, length, file);
-    section->begin  = &section->buffer[0];
-    section->end    = &section->buffer[length];
-    (*section->end) = '\0';
+    length = fread(section->buffer, 1, length, file);
+    section->buffer[length]='\0';
+    length = strlen(section->buffer);
+
+    /* close file & return section pointers begin/end */
+    section->begin = &section->buffer[0];
+    section->end   = &section->buffer[length];
+    assert( (*section->end)=='\0' );
     fclose(file);
     return section;
 }
