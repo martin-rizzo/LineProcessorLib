@@ -55,7 +55,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "sections/types.h sections/iface.c sections/internal.c "
+            argument = "sections/head-utf.h sections/includes.h sections/types.h sections/iface.h sections/internal.c sections/iface.c"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
