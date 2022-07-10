@@ -1,9 +1,8 @@
 /**
- * @file      lineproa.h
- * @date      Jun 25, 2022
- * @author    Martin Rizzo | <martinrizzo@gmail.com>
- * @copyright Copyright (c) 2022 Martin Rizzo.
- * @license   http://www.opensource.org/licenses/mit-license.html MIT License
+ * @file    lineproa.h
+ * @date    Jun 25, 2022
+ * @author  Martin Rizzo | <martinrizzo@gmail.com>
+ * @license http://www.opensource.org/licenses/mit-license.html [MIT License]
  *//*-------------------------------------------------------------------------
                        LineProcessorLib (ASCII version)
                 Portable, one-header library to easily process
@@ -90,7 +89,6 @@ void lineprof_for_each_line(LineproFunction function,
                             FILE*           file,
                             int*            linenum_ptr,
                             void*           user_ptr);
-
 
 /*------------------------ INTERNAL IMPLEMENTATION -------------------------*/
 
