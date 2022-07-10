@@ -58,7 +58,7 @@ typedef enum Command {
     CMD_PRINT_ERROR
 } Command;
 
-enum { FALSE=0, TRUE=1 };
+typedef enum Bool { FALSE=0, TRUE=1 } Bool;
 
 /*--------------------------------- ERRORS ---------------------------------*/
 
@@ -90,6 +90,18 @@ char* get_next_line(char* ptr, const char* end) {
     while (ptr<end && !is_newline(*ptr)) { ++ptr; }
     if (ptr<end) { ptr += (is_newline(ptr[1]) && ptr[1]!=ptr[0]) ? 2 : 1; }
     return ptr;
+}
+
+char* get_prev_line(char* ptr, const char* begin) {
+    assert( begin!=NULL );
+    assert( ptr!=NULL && ptr>=begin );
+    
+    --ptr;
+    if (ptr>=begin && is_newline(*ptr)) {
+        --ptr; if (ptr>=begin && is_newline(*ptr) && ptr[0]!=ptr[1]) { --ptr; }
+    }
+    while (ptr>=begin && !is_newline(*ptr)) { --ptr; }
+    return ptr+1;
 }
 
 /*---------------------------- SECTION HANDLING ----------------------------*/
@@ -135,18 +147,42 @@ void append_section_to_file(FILE* out_file, const Section* section, const char* 
     fwrite(section->begin, 1, length, out_file);
 }
 
-void trim_section(Section* section) {
-    char* ptr; const char* end; int preprocesor;
+Bool trim_top_section(Section* section) {
+    Bool preprocessor; char *ptr, *begin, *end, *current_line;
     assert( section!=NULL && section->begin!=NULL && section->end!=NULL );
+    assert( (*section->end)=='\0' );
     
-    ptr = section->begin;
-    end = section->end;
-    preprocesor=TRUE; while (ptr<end && preprocesor) {
+    begin        = section->begin;
+    end          = section->end;
+    current_line = begin;
+    preprocessor=TRUE; while (current_line<end && preprocessor) {
         /* skip spaces/tabs and verify preprocesor directive */
-        while (ptr<end && is_blank(*ptr)) { ++ptr; }
-        preprocesor = (*ptr=='#');
-        if (preprocesor) { section->begin = ptr = get_next_line(ptr,end); }
+        ptr = current_line; while (ptr<end && is_blank(*ptr)) { ++ptr; }
+        preprocessor = (*ptr=='#');
+        current_line = get_next_line(ptr, end);
+        if (preprocessor) { begin = current_line; }
     }
+    if (section->begin!=begin) { section->begin=begin; return TRUE; }
+    else                       { return FALSE; }
+}
+
+Bool trim_bottom_section(Section* section) {
+    Bool preprocessor; char *ptr, *begin, *end, *current_line;
+    assert( section!=NULL && section->begin!=NULL && section->end!=NULL );
+    assert( (*section->end)=='\0' );
+    
+    begin        = section->begin;
+    end          = section->end;
+    current_line = end;
+    preprocessor=TRUE; while (current_line>begin && preprocessor) {
+        current_line = get_prev_line(current_line,begin);
+        /* skip spaces/tabs and verify preprocesor directive */
+        ptr = current_line; while (ptr<end && is_blank(*ptr)) { ++ptr; }
+        preprocessor = (*ptr=='#');
+        if (preprocessor) { end = current_line; }
+    }
+    if (section->end!=end) { *(section->end=end)='\0'; return TRUE; }
+    else                   { return FALSE; }
 }
 
 void resolve_macros_in_section(Section* section) {
@@ -155,6 +191,7 @@ void resolve_macros_in_section(Section* section) {
     char* dest; const char *sour, *end;
     int inside, outside;
     assert( section!=NULL && section->begin!=NULL && section->end!=NULL );
+    assert( (*section->end)=='\0' );
     
     sour = dest = section->begin;
     end  = (section->end - macro_name_len);
@@ -214,7 +251,7 @@ Error join_sections(const char*  out_filename,
         section_name = filenames[i];
         section      = load_new_section( section_name );
         if (section) {
-            trim_section(section);
+            if (trim_top_section(section)) { trim_bottom_section(section); }
             resolve_macros_in_section(section);
             append_section_to_file(out_file, section, section_name);
             free(section);
