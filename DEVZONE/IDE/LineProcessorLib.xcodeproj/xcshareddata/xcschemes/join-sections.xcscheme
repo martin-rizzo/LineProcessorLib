@@ -59,6 +59,10 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "sections/types.h"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "-o output.h"
             isEnabled = "NO">
          </CommandLineArgument>
