@@ -1,4 +1,5 @@
-
+#ifndef IFACE_H
+#define IFACE_H
 
 void linepro_for_each_line(LineproFunction function,
                            const char*     filename,
@@ -9,3 +10,5 @@ void lineprof_for_each_line(LineproFunction function,
                             FILE*           file,
                             int*            linenum_ptr,
                             void*           user_ptr);
+
+#endif

@@ -1,3 +1,5 @@
+#ifndef TYPES_H
+#define TYPES_H
 
 #define LINEPRO_BUFSIZE 256
 
@@ -42,3 +44,5 @@ typedef struct LineproObject {
 } LineproObject;
 
 typedef void (*LineproFunction)(const char* line, LineproInfo* info);
+
+#endif
