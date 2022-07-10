@@ -100,7 +100,7 @@ typedef struct Section {
     char  buffer[1];
 } Section;
 
-Section* alloc_section(const char* filename) {
+Section* load_new_section(const char* filename) {
     FILE* file; Section* section; long length;
     assert( filename!=NULL && filename[0]!='\0' );
     
@@ -127,7 +127,7 @@ Section* alloc_section(const char* filename) {
     return section;
 }
 
-void append_section(FILE* out_file, const Section* section, const char* section_name) {
+void append_section_to_file(FILE* out_file, const Section* section, const char* section_name) {
     long length;
     assert( out_file!=NULL && section!=NULL && section_name!=NULL );
     length = (section->end - section->begin);
@@ -147,6 +147,34 @@ void trim_section(Section* section) {
         preprocesor = (*ptr=='#');
         if (preprocesor) { section->begin = ptr = get_next_line(ptr,end); }
     }
+}
+
+void resolve_macros_in_section(Section* section) {
+    static const char macro_name[]="HEADER_CODE";
+    static const int  macro_name_len=11;
+    char* dest; const char *sour, *end;
+    int inside, outside;
+    assert( section!=NULL && section->begin!=NULL && section->end!=NULL );
+    
+    sour = dest = section->begin;
+    end  = (section->end - macro_name_len);
+    while (sour<end) {
+        if (0!=memcmp(sour, macro_name, macro_name_len)) { *dest++=*sour++; }
+        else {
+            sour+=macro_name_len;
+            inside=outside=0;
+            while (sour<end && !outside) {
+                if (*sour==')') { outside=(--inside<=0); }
+                if (inside) { *dest++=*sour; }
+                if (*sour=='(') { ++inside; }
+                ++sour;
+            }
+        }
+    }
+    end = section->end;
+    while (sour<end) { *dest++=*sour++; }
+    section->end=dest;
+    (*section->end)='\0';
 }
 
 /*-------------------------------- COMMANDS --------------------------------*/
@@ -184,10 +212,11 @@ Error join_sections(const char*  out_filename,
     
     for (i=0; i<filenames_cnt && !error; ++i) {
         section_name = filenames[i];
-        section      = alloc_section( section_name );
+        section      = load_new_section( section_name );
         if (section) {
             trim_section(section);
-            append_section(out_file, section, section_name);
+            resolve_macros_in_section(section);
+            append_section_to_file(out_file, section, section_name);
             free(section);
         }
         else { error=ERR_CANT_OPEN_INPUT_FILE; errparam=filenames[i]; }
