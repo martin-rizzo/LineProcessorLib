@@ -92,22 +92,22 @@ char* get_next_line(char* ptr, const char* end) {
     return ptr;
 }
 
-char* get_prev_line(char* ptr, const char* begin) {
-    assert( begin!=NULL );
-    assert( ptr!=NULL && ptr>=begin );
+char* get_prev_line(char* ptr, const char* start) {
+    assert( start!=NULL );
+    assert( ptr!=NULL && ptr>=start );
     
     --ptr;
-    if (ptr>=begin && is_newline(*ptr)) {
-        --ptr; if (ptr>=begin && is_newline(*ptr) && ptr[0]!=ptr[1]) { --ptr; }
+    if (ptr>=start && is_newline(*ptr)) {
+        --ptr; if (ptr>=start && is_newline(*ptr) && ptr[0]!=ptr[1]) { --ptr; }
     }
-    while (ptr>=begin && !is_newline(*ptr)) { --ptr; }
+    while (ptr>=start && !is_newline(*ptr)) { --ptr; }
     return ptr+1;
 }
 
 /*---------------------------- SECTION HANDLING ----------------------------*/
 
 typedef struct Section {
-    char* begin;
+    char* start;
     char* end;
     char  buffer[1];
 } Section;
@@ -131,8 +131,8 @@ Section* load_new_section(const char* filename) {
     section->buffer[length]='\0';
     length = strlen(section->buffer);
 
-    /* close file & return section pointers begin/end */
-    section->begin = &section->buffer[0];
+    /* close file & return section pointers start/end */
+    section->start = &section->buffer[0];
     section->end   = &section->buffer[length];
     assert( (*section->end)=='\0' );
     fclose(file);
@@ -142,40 +142,40 @@ Section* load_new_section(const char* filename) {
 void append_section_to_file(FILE* out_file, const Section* section, const char* section_name) {
     long length;
     assert( out_file!=NULL && section!=NULL && section_name!=NULL );
-    length = (section->end - section->begin);
+    length = (section->end - section->start);
     if (out_file!=stdout) { printf(" # appending '%s'\n", section_name); }
-    fwrite(section->begin, 1, length, out_file);
+    fwrite(section->start, 1, length, out_file);
 }
 
 Bool trim_top_section(Section* section) {
-    Bool preprocessor; char *ptr, *begin, *end, *current_line;
-    assert( section!=NULL && section->begin!=NULL && section->end!=NULL );
+    Bool preprocessor; char *ptr, *start, *end, *current_line;
+    assert( section!=NULL && section->start!=NULL && section->end!=NULL );
     assert( (*section->end)=='\0' );
     
-    begin        = section->begin;
+    start        = section->start;
     end          = section->end;
-    current_line = begin;
+    current_line = start;
     preprocessor=TRUE; while (current_line<end && preprocessor) {
         /* skip spaces/tabs and verify preprocesor directive */
         ptr = current_line; while (ptr<end && is_blank(*ptr)) { ++ptr; }
         preprocessor = (*ptr=='#');
         current_line = get_next_line(ptr, end);
-        if (preprocessor) { begin = current_line; }
+        if (preprocessor) { start = current_line; }
     }
-    if (section->begin!=begin) { section->begin=begin; return TRUE; }
+    if (section->start!=start) { section->start=start; return TRUE; }
     else                       { return FALSE; }
 }
 
 Bool trim_bottom_section(Section* section) {
-    Bool preprocessor; char *ptr, *begin, *end, *current_line;
-    assert( section!=NULL && section->begin!=NULL && section->end!=NULL );
+    Bool preprocessor; char *ptr, *start, *end, *current_line;
+    assert( section!=NULL && section->start!=NULL && section->end!=NULL );
     assert( (*section->end)=='\0' );
     
-    begin        = section->begin;
+    start        = section->start;
     end          = section->end;
     current_line = end;
-    preprocessor=TRUE; while (current_line>begin && preprocessor) {
-        current_line = get_prev_line(current_line,begin);
+    preprocessor=TRUE; while (current_line>start && preprocessor) {
+        current_line = get_prev_line(current_line,start);
         /* skip spaces/tabs and verify preprocesor directive */
         ptr = current_line; while (ptr<end && is_blank(*ptr)) { ++ptr; }
         preprocessor = (*ptr=='#');
@@ -190,10 +190,10 @@ void resolve_macros_in_section(Section* section) {
     static const int  macro_name_len=11;
     char* dest; const char *sour, *end;
     int inside, outside;
-    assert( section!=NULL && section->begin!=NULL && section->end!=NULL );
+    assert( section!=NULL && section->start!=NULL && section->end!=NULL );
     assert( (*section->end)=='\0' );
     
-    sour = dest = section->begin;
+    sour = dest = section->start;
     end  = (section->end - macro_name_len);
     while (sour<end) {
         if (0!=memcmp(sour, macro_name, macro_name_len)) { *dest++=*sour++; }
