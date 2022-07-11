@@ -86,6 +86,11 @@ const char* error_msg[] = {
 #define is_newline(x) ((x)=='\n' || (x)=='\r')
 #define is_blank(x)   ((x)==' '  || (x)=='\t')
 
+Bool is_preprocessor_line(const char* ptr, const char* end) {
+    while (ptr<end && is_blank(*ptr)) { ++ptr; }
+    return (*ptr=='#');
+}
+
 char* get_next_line(char* ptr, const char* end) {
     while (ptr<end && !is_newline(*ptr)) { ++ptr; }
     if (ptr<end) { ptr += (is_newline(ptr[1]) && ptr[1]!=ptr[0]) ? 2 : 1; }
@@ -148,18 +153,15 @@ void append_section_to_file(FILE* out_file, const Section* section, const char* 
 }
 
 Bool trim_top_section(Section* section) {
-    Bool preprocessor; char *ptr, *start, *end, *current_line;
+    Bool preprocessor; char *start, *end, *current_line;
     assert( section!=NULL && section->start!=NULL && section->end!=NULL );
     assert( (*section->end)=='\0' );
-    
     start        = section->start;
     end          = section->end;
     current_line = start;
     preprocessor=TRUE; while (current_line<end && preprocessor) {
-        /* skip spaces/tabs and verify preprocesor directive */
-        ptr = current_line; while (ptr<end && is_blank(*ptr)) { ++ptr; }
-        preprocessor = (*ptr=='#');
-        current_line = get_next_line(ptr, end);
+        preprocessor = is_preprocessor_line(current_line,end);
+        current_line = get_next_line(current_line,end);
         if (preprocessor) { start = current_line; }
     }
     if (section->start!=start) { section->start=start; return TRUE; }
@@ -167,18 +169,15 @@ Bool trim_top_section(Section* section) {
 }
 
 Bool trim_bottom_section(Section* section) {
-    Bool preprocessor; char *ptr, *start, *end, *current_line;
+    Bool preprocessor; char *start, *end, *current_line;
     assert( section!=NULL && section->start!=NULL && section->end!=NULL );
     assert( (*section->end)=='\0' );
-    
     start        = section->start;
     end          = section->end;
     current_line = end;
     preprocessor=TRUE; while (current_line>start && preprocessor) {
         current_line = get_prev_line(current_line,start);
-        /* skip spaces/tabs and verify preprocesor directive */
-        ptr = current_line; while (ptr<end && is_blank(*ptr)) { ++ptr; }
-        preprocessor = (*ptr=='#');
+        preprocessor = is_preprocessor_line(current_line,end);
         if (preprocessor) { end = current_line; }
     }
     if (section->end!=end) { *(section->end=end)='\0'; return TRUE; }
