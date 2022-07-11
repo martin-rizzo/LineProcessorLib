@@ -90,6 +90,7 @@ void lineprof_for_each_line(LineproFunction function,
                             int*            linenum_ptr,
                             void*           user_ptr);
 
+
 /*------------------------ INTERNAL IMPLEMENTATION -------------------------*/
 
 static
