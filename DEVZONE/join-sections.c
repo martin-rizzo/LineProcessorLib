@@ -83,8 +83,9 @@ const char* error_msg[] = {
 
 /*---------------------------- ??????????????? ----------------------------*/
 
-#define is_newline(x) ((x)=='\n' || (x)=='\r')
-#define is_blank(x)   ((x)==' '  || (x)=='\t')
+#define is_newline(x)       ((x)=='\n' || (x)=='\r')
+#define is_blank(x)         ((x)==' '  || (x)=='\t')
+#define is_dir_separator(x) ((x)=='/'  || (x)=='\\')
 
 Bool is_preprocessor_line(const char* ptr, const char* end) {
     while (ptr<end && is_blank(*ptr)) { ++ptr; }
@@ -109,9 +110,19 @@ char* get_prev_line(char* ptr, const char* start) {
     return ptr+1;
 }
 
+const char* get_name(const char* filepath) {
+    const char *ptr, *name;
+    assert( filepath!=NULL );
+    for (ptr=name=filepath; *ptr!='\0'; ++ptr) {
+        if (is_dir_separator(*ptr)) { name=ptr+1; }
+    }
+    return name;
+}
+
 /*---------------------------- SECTION HANDLING ----------------------------*/
 
 typedef struct Section {
+    Bool  filterable; /* TRUE = must apply filters (trim, macros, etc) */
     char* start;
     char* end;
     char  buffer[1];
@@ -136,9 +147,10 @@ Section* load_new_section(const char* filename) {
     section->buffer[length]='\0';
     length = strlen(section->buffer);
 
-    /* close file & return section pointers start/end */
-    section->start = &section->buffer[0];
-    section->end   = &section->buffer[length];
+    /* close the file & return section information */
+    section->filterable = get_name(filename)[0]!='_';
+    section->start      = &section->buffer[0];
+    section->end        = &section->buffer[length];
     assert( (*section->end)=='\0' );
     fclose(file);
     return section;
@@ -250,8 +262,10 @@ Error join_sections(const char*  out_filename,
         section_name = filenames[i];
         section      = load_new_section( section_name );
         if (section) {
-            if (trim_top_section(section)) { trim_bottom_section(section); }
-            resolve_macros_in_section(section);
+            if (section->filterable) {
+                if (trim_top_section(section)) { trim_bottom_section(section); }
+                resolve_macros_in_section(section);
+            }
             append_section_to_file(out_file, section, section_name);
             free(section);
         }
