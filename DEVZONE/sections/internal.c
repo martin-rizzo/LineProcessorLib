@@ -1,4 +1,4 @@
-#include "_stdhead.h"
+#include "_stdinc.h"
 #include "types.h"
 #include "internal.h"
 #define HEADER_CODE(x)
