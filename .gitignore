@@ -1,55 +1,61 @@
 
-#-- MACOS TEMP FILES ---------
+#---------------------------------------
+#         MACOS TEMP FILES
 .DS_Store
 .Trashes
 *.swp
 
-#-- XCODE FILES --------------
+#---------------------------------------
+#            XCODE FILES
 xcuserdata/
 *.xcscmblueprint
 *.xccheckout
 timeline.xctimeline
 playground.xcworkspace
 
-#-- OBJECT FILES -------------
-obj/
+#---------------------------------------
+#           OBJECT FILES
+**/obj/*
 *.o
 *.ko
 *.obj
 *.elf
 
-#-- LINKER OUTPUT ------------
+#---------------------------------------
+#            EXECUTABLES
+**/bin/*
+*.exe
+*.out
+
+#---------------------------------------
+#    README FILE IS ALWAYS INCLUDED
+!README.txt
+!README.md
+
+
+
+#-- LINKER OUTPUT ----------
 *.ilk
 *.map
 *.exp
-
-#-- PRECOMPILED HEADERS ------
+#-- PRECOMPILED HEADERS ----
 *.gch
 *.pch
-
-#-- LIBRARIES ----------------
+#-- LIBRARIES --------------
 *.lib
 *.a
 *.la
 *.lo
-
-#-- SHARED OBJECTS -----------
+#-- SHARED OBJECTS ---------
 *.dll
 *.so
 *.so.*
 *.dylib
-
-#-- EXECUTABLES --------------
-bin/
-*.exe
-*.out
-
-#-- DEBUG FILES --------------
+#-- DEBUG FILES ------------
 *.dSYM/
 *.su
 *.idb
 *.pdb
-
-##-- LOCK FILES --------------
+##-- LOCK FILES ------------
 *.lock
 
