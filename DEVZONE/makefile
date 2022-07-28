@@ -1,44 +1,40 @@
-CC = cc
+DEBUG_FLAGS   =
 RELEASE_FLAGS = -Os -DNDEBUG
-ANSI_C_FLAGS  = -ansi -pedantic-errors -Wall
-CFLAGS = $(RELEASE_FLAGS) $(ANSI_C_FLAGS)
 
-JOIN_SECTIONS=./bin/join-sections
+# ansi c compiler
+CC     = cc
+CFLAGS = $(RELEASE_FLAGS) -ansi -pedantic-errors -Wall
 
-SECTIONS_DIR=sections/
-LINEPRO_UTF8_HEADER=../linepro.h
-LINEPRO_ASCII_HEADER=../lineproa.h
-UTF8_SOURCES  = _heading-utf.h _stdinc.h types.h iface.h internal.c iface.c
-ASCII_SOURCES = _heading-asc.h _stdinc.h types.h iface.h internal.c iface.c
+# directories
+MAIN_DIR     = ..
+BIN_DIR      = ./bin
+SECTIONS_DIR = ./sections
 
-UTF8_SECTIONS=$(addprefix $(SECTIONS_DIR),$(UTF8_SOURCES))
-ASCII_SECTIONS=$(addprefix $(SECTIONS_DIR),$(ASCII_SOURCES))
+# targets
+LINEPRO_HEADER = $(MAIN_DIR)/linepro.h
+JOIN_SECTIONS  = $(BIN_DIR)/join-sections
 
-.PHONY: all headers clean
+# code sections
+SECTIONS_FILES= _heading.h _stdinc.h types.h iface.h internal.c iface.c
+SECTIONS = $(addprefix $(SECTIONS_DIR)/,$(SECTIONS_FILES))
 
-all: headers
 
-headers: $(LINEPRO_UTF8_HEADER) $(LINEPRO_ASCII_HEADER)
+.PHONY: all header clean
+
+all: header
+
+header: $(LINEPRO_HEADER)
 
 clean:
-	rm -f $(LINEPRO_UTF8_HEADER) $(LINEPRO_ASCII_HEADER) $(JOIN_SECTIONS)
+	rm -f $(LINEPRO_HEADER) $(JOIN_SECTIONS)
+
+
+$(LINEPRO_HEADER): $(JOIN_SECTIONS) $(SECTIONS)
+	$(JOIN_SECTIONS) $(SECTIONS) --output $(LINEPRO_HEADER)
 
 
 $(JOIN_SECTIONS): join-sections.c
 	$(CC) $(CFLAGS) join-sections.c -o $(JOIN_SECTIONS)
 
 
-$(LINEPRO_UTF8_HEADER): $(JOIN_SECTIONS) $(UTF8_SECTIONS)
-	$(JOIN_SECTIONS) $(UTF8_SECTIONS) --output $(LINEPRO_UTF8_HEADER)
-
-
-$(LINEPRO_ASCII_HEADER): $(JOIN_SECTIONS) $(ASCII_SECTIONS)
-	$(JOIN_SECTIONS) $(ASCII_SECTIONS) --output $(LINEPRO_ASCII_HEADER)
-
-
-
 	
-
-
-
-

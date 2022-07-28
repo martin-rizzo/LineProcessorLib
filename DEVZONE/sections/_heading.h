@@ -1,11 +1,12 @@
 /**
- * @file      type.c
- * @date      Jun 25, 2022
- * @author    Martin Rizzo | <martinrizzo@gmail.com>
- * @copyright Copyright (c) 2022 Martin Rizzo.
- * @license   http://www.opensource.org/licenses/mit-license.html MIT License
+ * @file    linepro.h
+ * @date    Jun 25, 2022
+ * @author  Martin Rizzo | <martinrizzo@gmail.com>
+ * @license http://www.opensource.org/licenses/mit-license.html [MIT License]
  *//*-------------------------------------------------------------------------
-            This code is an example of use of LineProcessorLib
+                              LineProcessorLib
+                Portable, one-header library to easily process
+                lines of text from files encoded in any format.
   
      Copyright (c) 2022 Martin Rizzo
   
@@ -28,24 +29,3 @@
      TORT OR OTHERWISE, ARISING FROM,OUT OF OR IN CONNECTION WITH THE
      SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-#include <stdio.h>
-
-/* include the LineProcessorLib implementation */
-#define LINEPRO_IMPLEMENTATION
-#include "linepro.h"
-
-
-
-void process_line(const char* line, LineproInfo* info) {
-    printf("%s\n", line);
-}
-
-
-int main (int argc, char **argv) {
-    if (argc>1 && *argv[1]!='\0') {
-        linepro_for_each_line(process_line, argv[1], NULL, NULL);
-    }
-    return 0;
-}
-
-

@@ -1,6 +1,6 @@
 /**
- * @file      typeasc.c
- * @date      Jun 25, 2022
+ * @file      testlib.c
+ * @date      Jul 28, 2022
  * @author    Martin Rizzo | <martinrizzo@gmail.com>
  * @copyright Copyright (c) 2022 Martin Rizzo.
  * @license   http://www.opensource.org/licenses/mit-license.html MIT License
@@ -30,22 +30,11 @@
 */
 #include <stdio.h>
 
-/* include the LineProcessorLib ASCII implementation */
+/* include the LineProcessorLib implementation */
 #define LINEPRO_IMPLEMENTATION
-#include "lineproa.h"
+#include "linepro.h"
 
 
-
-void process_line(const char* line, LineproInfo* info) {
-    printf("%s\n", line);
-}
-
-
-int main (int argc, char **argv) {
-    if (argc>1 && *argv[1]!='\0') {
-        linepro_for_each_line(process_line, argv[1], NULL, NULL);
-    }
+int main(int argc, char **argv) {
     return 0;
 }
-
-

@@ -4,7 +4,7 @@
  * @author  Martin Rizzo | <martinrizzo@gmail.com>
  * @license http://www.opensource.org/licenses/mit-license.html [MIT License]
  *//*-------------------------------------------------------------------------
-                       LineProcessorLib (UTF8 version)
+                              LineProcessorLib
                 Portable, one-header library to easily process
                 lines of text from files encoded in any format.
   

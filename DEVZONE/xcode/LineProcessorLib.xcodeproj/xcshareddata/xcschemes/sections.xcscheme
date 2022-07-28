@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5BFC195E2867CFDE0045967A"
-               BuildableName = "type"
-               BlueprintName = "type"
+               BlueprintIdentifier = "5B4646AD2868E7850008E16A"
+               BuildableName = "sections"
+               BlueprintName = "sections"
                ReferencedContainer = "container:LineProcessorLib.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -41,16 +41,16 @@
       debugDocumentVersioning = "NO"
       debugXPCServices = "NO"
       debugServiceExtension = "internal"
-      enableGPUFrameCaptureMode = "3"
+      enableGPUValidationMode = "1"
       allowLocationSimulation = "NO"
       GPUProfilerEnabled = "No">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5BFC195E2867CFDE0045967A"
-            BuildableName = "type"
-            BlueprintName = "type"
+            BlueprintIdentifier = "5B4646AD2868E7850008E16A"
+            BuildableName = "sections"
+            BlueprintName = "sections"
             ReferencedContainer = "container:LineProcessorLib.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -71,9 +71,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5BFC195E2867CFDE0045967A"
-            BuildableName = "type"
-            BlueprintName = "type"
+            BlueprintIdentifier = "5B4646AD2868E7850008E16A"
+            BuildableName = "sections"
+            BlueprintName = "sections"
             ReferencedContainer = "container:LineProcessorLib.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -1,12 +1,11 @@
 /**
- * @file    linepro.h
- * @date    Jun 25, 2022
- * @author  Martin Rizzo | <martinrizzo@gmail.com>
- * @license http://www.opensource.org/licenses/mit-license.html [MIT License]
+ * @file      concat.c
+ * @date      Jun 25, 2022
+ * @author    Martin Rizzo | <martinrizzo@gmail.com>
+ * @copyright Copyright (c) 2022 Martin Rizzo.
+ * @license   http://www.opensource.org/licenses/mit-license.html MIT License
  *//*-------------------------------------------------------------------------
-                       LineProcessorLib (UTF8 version)
-                Portable, one-header library to easily process
-                lines of text from files encoded in any format.
+            This code is an example of use of LineProcessorLib
   
      Copyright (c) 2022 Martin Rizzo
   
@@ -29,3 +28,30 @@
      TORT OR OTHERWISE, ARISING FROM,OUT OF OR IN CONNECTION WITH THE
      SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
+#include <stdio.h>
+
+/* include the LineProcessorLib implementation */
+#define LINEPRO_IMPLEMENTATION
+#include "linepro.h"
+
+
+
+void print_text_line(const char* line, LineproInfo* info) {
+    printf("%s\n", line);
+}
+
+
+int main (int argc, char **argv) {
+    int line_number; const char* filename;
+    
+    filename = (argc>1 ? argv[1] : NULL);
+    if (filename) {
+        line_number = 1;
+        /* linepro_process_file(filename, print_text_line, "ascii,#", &line_number, NULL); */
+        /* linepro_process_handle(file," print_text_line, "ascii,#", &line_number, NULL); */
+        /* linepro_process_buffer(buffer, bufsize, print_text_line, "ascii,#", &line_number, NULL); */
+    }
+    return 0;
+}
+
+
