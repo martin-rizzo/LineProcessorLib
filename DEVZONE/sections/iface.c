@@ -5,31 +5,34 @@
 
 /*---------------------------- PUBLIC INTERFACE ----------------------------*/
 
-void linepro_for_each_line(LineproFunction function,
-                           const char*     filename,
-                           int*            linenum_ptr,
-                           void*           user_ptr)
+void linepro_process_file(const char*     filename,
+                          LineproFunction function,
+                          const char *    mode,
+                          int *           linenum_ptr,
+                          void *          user_ptr)
 {
-    FILE* file;
-    file = fopen(filename, "rb");
-    if (file!=NULL) {
-        lineprof_for_each_line(function, file, linenum_ptr, user_ptr);
-        fclose(file);
+    FILE* stream;
+    assert( filename!=NULL && filename[0]!='\0' && function!=NULL );
+    stream = fopen(filename, "rb");
+    if (stream) {
+        linepro_process_stream(stream, function, mode, linenum_ptr, user_ptr);
+        fclose(stream);
     }
 }
 
-void lineprof_for_each_line(LineproFunction function,
-                            FILE*           file,
-                            int*            linenum_ptr,
-                            void*           user_ptr)
+void linepro_process_stream(FILE*           stream,
+                            LineproFunction function,
+                            const char *    mode,
+                            int *           linenum_ptr,
+                            void *          user_ptr)
 {
-    LineproObject* obj;
-    char *ptr, *line;
-    assert( function!=NULL && file!=NULL );
+    LineproObject* obj; char *ptr, *line;
+    assert( stream!=NULL && function!=NULL );
     
     /* init object */
     obj = malloc(sizeof(LineproObject));
-    obj->file              = file;
+    obj->linenum           = linenum_ptr!=NULL ? (*linenum_ptr) : 1;
+    obj->stream            = stream;
     obj->buffer            = obj->initialBuffer;
     obj->bufferSize        = LINEPRO_BUFSIZE;
     obj->nextLine          = obj->buffer;
@@ -56,8 +59,20 @@ void lineprof_for_each_line(LineproFunction function,
             else                             { *ptr='\0'; ptr=NULL; /* end-of-file */  }
         }
         obj->nextLine = ptr;
-        function(line, (LineproInfo*)obj);
+        function(line, (LineproInfo*)obj); ++obj->linenum;
     }
     
+    if (linenum_ptr!=NULL) { (*linenum_ptr)=obj->linenum; }
     free(obj);
+}
+
+void linepro_process_buffer(void*           buffer,
+                            size_t          bufsize,
+                            LineproFunction function,
+                            const char *    mode,
+                            int *           linenum_ptr,
+                            void *          user_ptr)
+{
+    /* not implemented, yet */
+    assert( 0 );
 }

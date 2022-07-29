@@ -21,7 +21,7 @@ char* _linepro_read_more_data(LineproObject* obj) {
         bytesToLoad = (obj->bufferSize-2) - bytesToKeep;
     }
     if (bytesToKeep) { memmove(obj->buffer, obj->nextLine, bytesToKeep); }
-    bytesRead = (int)fread(&obj->buffer[bytesToKeep], sizeof(char), bytesToLoad, obj->file);
+    bytesRead = (int)fread(&obj->buffer[bytesToKeep], sizeof(char), bytesToLoad, obj->stream);
     obj->moreDataAvailable = (bytesRead==bytesToLoad);
     obj->nextLine          = obj->buffer;
     obj->bufferEnd         = &obj->buffer[bytesToKeep+bytesRead];

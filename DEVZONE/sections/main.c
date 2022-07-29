@@ -8,12 +8,17 @@
 #include "iface.h"
 
 
-void print_line(const char* line, LineproInfo* info) {
-    printf("%d: %s\n", info->linenum, line);
+void print_text_line(const char* line, LineproInfo* info) {
+    printf("%3d: %s\n", info->linenum, line);
 }
 
 
 int main (int argc, char **argv) {
-    if (argc>1) { linepro_for_each_line(print_line, argv[1], NULL, NULL); }
+    const char* filename;
+    
+    filename = (argc>1 ? argv[1] : NULL);
+    if (filename) {
+        linepro_process_file(filename, print_text_line, "utf8", NULL, NULL);
+    }
     return 0;
 }

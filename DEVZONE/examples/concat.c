@@ -47,8 +47,8 @@ int main (int argc, char **argv) {
     filename = (argc>1 ? argv[1] : NULL);
     if (filename) {
         line_number = 1;
-        /* linepro_process_file(filename, print_text_line, "ascii,#", &line_number, NULL); */
-        /* linepro_process_handle(file," print_text_line, "ascii,#", &line_number, NULL); */
+        linepro_process_file(filename, print_text_line, "ascii,#", &line_number, NULL);
+        /* linepro_process_stream(stream, print_text_line, "ascii,#", &line_number, NULL); */
         /* linepro_process_buffer(buffer, bufsize, print_text_line, "ascii,#", &line_number, NULL); */
     }
     return 0;

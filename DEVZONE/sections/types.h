@@ -33,7 +33,7 @@ typedef struct LineproObject {
     LINEPRO_ENCODING encoding;
     LINEPRO_EOL      eol;
     unsigned int     isEncodingSupported;
-    FILE*            file;
+    FILE*            stream;
     char*            buffer;
     int              bufferSize;
     char*            bufferEnd;
