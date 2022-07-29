@@ -140,7 +140,7 @@ void _linepro_detect_encoding(LineproObject* obj) {
     static const unsigned char UTF8_BOM[]     = { 239, 187, 191 };
     static const unsigned char UTF16_BE_BOM[] = { 254, 255 };
     static const unsigned char UTF16_LE_BOM[] = { 255, 254 };
-    int len, count, oddzeros, evenzeros, notext, isEncodingSupported;
+    int len, count, oddzeros, evenzeros, notext;
     int eol_rn=0, eol_r=0, eol_nr=0, eol_n=0;
     unsigned char *ptr, *start;
     LINEPRO_ENCODING encoding = LINEPRO_ENCODING_BINARY;
@@ -191,7 +191,7 @@ void _linepro_detect_encoding(LineproObject* obj) {
         }
     }
     /* store results and return */
-    isEncodingSupported = (encoding==LINEPRO_ENCODING_UTF8) || (encoding==LINEPRO_ENCODING_UTF8_BOM);
+    obj->isEncodingSupported = (encoding==LINEPRO_ENCODING_UTF8) || (encoding==LINEPRO_ENCODING_UTF8_BOM);
     obj->encoding = encoding;
     obj->eol      = _linepro_select_eol(eol_r, eol_rn, eol_n, eol_nr);
     obj->nextLine = obj->isEncodingSupported ? (char*)start : NULL;
